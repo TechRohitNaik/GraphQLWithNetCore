@@ -21,6 +21,14 @@ namespace GraphQLAPI
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                });
+                })
+            .ConfigureLogging(logging =>
+            {
+                // clear default logging providers
+                logging.ClearProviders();
+                // add built-in providers manually, as needed 
+                logging.AddConsole();
+                logging.AddDebug();
+            });
     }
 }
