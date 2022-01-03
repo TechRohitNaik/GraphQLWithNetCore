@@ -29,6 +29,7 @@ namespace GraphQLAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddRazorPages();
             services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer
             (Configuration.GetConnectionString("AppConnectionString")));
 
@@ -57,6 +58,7 @@ namespace GraphQLAPI
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseStaticFiles();
             app.UseWebSockets();
 
             app.UseRouting();
@@ -64,6 +66,7 @@ namespace GraphQLAPI
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGraphQL();
+                endpoints.MapRazorPages();
             });
 
             app.UseGraphQLVoyager(new GraphQLVoyagerOptions()
