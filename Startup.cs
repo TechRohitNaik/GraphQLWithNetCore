@@ -41,21 +41,21 @@ namespace GraphQLAPI
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, AppDbContext dbContext, ILogger<Startup> _logger)
         {
             //Added for executing migration scripts on database
-            try
-            {
+            //try
+            //{
                 _logger.LogInformation("Started running migration scripts");
                 dbContext.Database.Migrate();
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex.Message);
-                if (ex.StackTrace != null)
-                    _logger.LogError(ex.StackTrace);
-            }
-            if (env.IsDevelopment())
-            {
+            //}
+            //catch (Exception ex)
+            //{
+            //    _logger.LogError(ex.Message);
+            //    if (ex.StackTrace != null)
+            //        _logger.LogError(ex.StackTrace);
+            //}
+            //if (env.IsDevelopment())
+            //{
                 app.UseDeveloperExceptionPage();
-            }
+            //}
 
             app.UseWebSockets();
 
