@@ -30,6 +30,10 @@ namespace GraphQLAPI
             services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer
             (Configuration.GetConnectionString("AppConnectionString")));
 
+            var serviceProvider = services.BuildServiceProvider();
+            var dataContext = serviceProvider.GetService<AppDbContext>();
+            dataContext.Database.Migrate();
+
             services
                 .AddGraphQLServer()
                 .AddQueryType<Query>();
