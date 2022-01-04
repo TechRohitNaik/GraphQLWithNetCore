@@ -12,6 +12,6 @@ namespace GraphQLAPI.Models
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
-        public ICollection<Car> Cars = new List<Car>();
+        public ICollection<Car> Cars { get; set; } = new List<Car>();
     }
 }

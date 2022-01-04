@@ -1,6 +1,8 @@
 using GraphQL.Server.Ui.Voyager;
 using GraphQLAPI.DBContext;
 using GraphQLAPI.GraphQLArtifacts;
+using HotChocolate;
+using HotChocolate.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -35,17 +37,19 @@ namespace GraphQLAPI
 
             services
                 .AddGraphQLServer()
-                .AddQueryType<Query>();
+                .AddQueryType<Query>()
+                .AddProjections();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, AppDbContext dbContext, ILogger<Startup> _logger)
+        [UseDbContext(typeof(AppDbContext))]
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IDbContextFactory<AppDbContext> dbContext, ILogger<Startup> _logger)
         {
             //Added for executing migration scripts on database
             try
             {
                 _logger.LogInformation("Started running migration scripts");
-                dbContext.Database.Migrate();
+                dbContext.CreateDbContext().Database.Migrate();
             }
             catch (Exception ex)
             {
