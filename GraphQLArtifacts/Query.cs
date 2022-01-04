@@ -21,11 +21,15 @@ namespace GraphQLAPI.GraphQLArtifacts
         [UseProjection]
         //[UseFiltering]
         //[UseSorting]
-        [GraphQLDescription("Gets the queryable Maker.")]
+        [GraphQLDescription("Gets the queryable Maker")]
         public IQueryable<Maker> GetMaker([ScopedService] AppDbContext context)
         {
             return context.Makers;
         }
-        
+        [GraphQLDescription("Gets the queryable Car")]
+        public IQueryable<Car> GetCar([ScopedService] AppDbContext context)
+        {
+            return context.Cars;
+        }
     }
 }
