@@ -14,5 +14,6 @@ namespace GraphQLAPI.DBContext
 
         }
         public DbSet<Maker> Makers { get; set; }
+        public DbSet<Car> Cars { get; set; }
     }
 }

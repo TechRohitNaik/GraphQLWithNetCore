@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace GraphQLAPI.Models
 {
-    public class Maker
+    public class Car
     {
         [Key]
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
-        public ICollection<Car> Cars = new List<Car>();
+        [Required]
+        public int MakerId { get; set; }        
+        public Maker Maker { get; set; }
     }
 }

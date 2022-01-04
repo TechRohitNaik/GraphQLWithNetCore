@@ -30,7 +30,7 @@ namespace GraphQLAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
-            services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer
+            services.AddPooledDbContextFactory<AppDbContext>(opt => opt.UseSqlServer
             (Configuration.GetConnectionString("AppConnectionString")));
 
             services

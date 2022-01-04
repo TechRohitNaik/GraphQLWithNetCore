@@ -13,15 +13,15 @@ namespace GraphQLAPI.GraphQLArtifacts
     public class Query
     {
         /// <summary>
-        /// Gets the queryable <see cref="Platform"/>.
+        /// Gets the queryable <see cref="Maker"/>.
         /// </summary>
         /// <param name="context">The <see cref="AppDbContext"/>.</param>
-        /// <returns>The queryable <see cref="Platform"/>.</returns>
-        //[UseDbContext(typeof(AppDbContext))]
-       // [UseFiltering]
+        /// <returns>The queryable <see cref="Maker"/>.</returns>
+        [UseDbContext(typeof(AppDbContext))]
+        //[UseFiltering]
         //[UseSorting]
         [GraphQLDescription("Gets the queryable platform.")]
-        public IQueryable<Maker> GetMaker([Service] AppDbContext context)
+        public IQueryable<Maker> GetMaker([ScopedService] AppDbContext context)
         {
             return context.Makers;
         }
