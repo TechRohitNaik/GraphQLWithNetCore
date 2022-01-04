@@ -26,6 +26,9 @@ namespace GraphQLAPI.GraphQLArtifacts
         {
             return context.Makers;
         }
+
+        [UseDbContext(typeof(AppDbContext))]
+        [UseProjection]
         [GraphQLDescription("Gets the queryable Car")]
         public IQueryable<Car> GetCar([ScopedService] AppDbContext context)
         {
